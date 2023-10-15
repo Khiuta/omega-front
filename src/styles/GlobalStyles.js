@@ -16,7 +16,6 @@ export default createGlobalStyle`
     }
 
     body .Toastify .Toastify__toast-container .Toastify__toast--success {
-        background: limegreen;
     }
 
     body .Toastify .Toastify__toast-container .Toastify__toast--error {

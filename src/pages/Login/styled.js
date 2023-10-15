@@ -71,6 +71,7 @@ export const Content = styled.main`
         border: none;
         border: 1px solid #fff;
         border-radius: 10px;
+        cursor: pointer;
       }
     }
   }

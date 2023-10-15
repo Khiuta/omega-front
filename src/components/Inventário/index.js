@@ -1,53 +1,46 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { BsPlusSquare } from 'react-icons/bs';
+import React, { useEffect, useState } from 'react';
+import { BsQuestionLg, BsPlusSquare } from 'react-icons/bs';
 import { FiSave } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import axios from '../../services/axios';
 
-import { Habi } from './styled';
+import { Inv } from './styled';
 
-export default function Habilidades() {
+export default function Inventário() {
   const id = useSelector((state) => state.auth.user.id);
   const [info, setInfo] = useState(false);
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
-  const [cost, setCost] = useState('');
+  const [slots, setSlots] = useState('');
   const [description, setDescription] = useState('');
-  const isMounted = useRef(false);
 
   async function getData() {
-    try {
-      const response = await axios.get(`/ability/${id}`);
-      setData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await axios.get(`/item/${id}`);
+    setData(response.data);
   }
 
   useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true;
-      getData();
-    }
+    getData();
+    console.log(data);
   }, []);
 
   const handleCreate = async () => {
-    await axios.post('/ability', {
+    await axios.post('/item', {
       character_id: id,
     });
     getData();
-    alert('Habilidade criada.');
+    alert('Item criado.');
   };
 
   const handleSave = async () => {
-    await axios.put(`/ability/${info}`, {
-      name, cost, description, character_id: id,
+    await axios.put(`/item/${info}`, {
+      name, slots, description, character_id: id,
     });
     setName('');
-    setCost('');
+    setSlots('');
     setDescription('');
     getData();
-    alert('Habilidade atualizada.');
+    alert('Item atualizado.');
   };
 
   const handleCheck = (identifier) => {
@@ -56,36 +49,37 @@ export default function Habilidades() {
   };
 
   return (
-    <Habi>
+    <Inv>
       <header>
-        <p>Habilidades</p>
+        <p>Inventário</p>
         <FiSave className="save" size={30} onClick={handleSave} />
       </header>
       <main>
-        {data && data.map((hab) => {
-          if (info === hab.id) {
+
+        {data && data.map((item) => {
+          if (info === item.id) {
             return (
-              <div key={hab.id}>
-                <section className="nome-hab">
-                  Nome
+              <div>
+                <section key={item.id} className="nome-item">
+                  <p>Nome</p>
                   <input
                     type="text"
-                    placeholder={hab.name}
-                    id="nome-hab"
+                    placeholder={item.name}
                     value={name}
+                    id="nome-item"
                     onChange={(e) => setName(e.target.value)}
-                    onFocus={() => handleCheck(hab.id)}
+                    onFocus={() => handleCheck(item.id)}
                   />
                 </section>
-                <section className="custo-hab">
-                  Custo
+                <section className="esp-item">
+                  <p>Espaços</p>
                   <input
                     type="text"
-                    placeholder={hab.cost}
-                    id="custo-hab"
-                    value={cost}
-                    onChange={(e) => setCost(e.target.value)}
-                    onFocus={() => handleCheck(hab.id)}
+                    placeholder={item.slots}
+                    value={slots}
+                    id="esp-item"
+                    onChange={(e) => setSlots(e.target.value)}
+                    onFocus={() => handleCheck(item.id)}
                   />
                 </section>
                 <section className="desc-hab">
@@ -93,10 +87,10 @@ export default function Habilidades() {
                   <textarea
                     type="text"
                     id="desc-hab"
+                    placeholder={item.description}
                     value={description}
-                    placeholder={hab.description}
                     onChange={(e) => setDescription(e.target.value)}
-                    onFocus={() => handleCheck(hab.id)}
+                    onFocus={() => handleCheck(item.id)}
                   />
                 </section>
                 <span />
@@ -105,25 +99,25 @@ export default function Habilidades() {
           }
 
           return (
-            <div key={hab.id}>
-              <section className="nome-hab">
-                Nome
+            <div>
+              <section key={item.id} className="nome-item">
+                <p>Nome</p>
                 <input
                   type="text"
-                  id="nome-hab"
-                  value={hab.name}
+                  value={item.name}
+                  id="nome-item"
                   onChange={(e) => setName(e.target.value)}
-                  onFocus={() => handleCheck(hab.id)}
+                  onFocus={() => handleCheck(item.id)}
                 />
               </section>
-              <section className="custo-hab">
-                Custo
+              <section className="esp-item">
+                <p>Espaços</p>
                 <input
                   type="text"
-                  id="custo-hab"
-                  value={hab.cost}
-                  onChange={(e) => setCost(e.target.value)}
-                  onFocus={() => handleCheck(hab.id)}
+                  value={item.slots}
+                  id="esp-item"
+                  onChange={(e) => setSlots(e.target.value)}
+                  onFocus={() => handleCheck(item.id)}
                 />
               </section>
               <section className="desc-hab">
@@ -131,9 +125,9 @@ export default function Habilidades() {
                 <textarea
                   type="text"
                   id="desc-hab"
-                  value={hab.description}
+                  value={item.description}
                   onChange={(e) => setDescription(e.target.value)}
-                  onFocus={() => handleCheck(hab.id)}
+                  onFocus={() => handleCheck(item.id)}
                 />
               </section>
               <span />
@@ -144,6 +138,6 @@ export default function Habilidades() {
           <BsPlusSquare size={30} onClick={handleCreate} />
         </div>
       </main>
-    </Habi>
+    </Inv>
   );
 }

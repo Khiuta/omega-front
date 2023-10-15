@@ -9,6 +9,14 @@ export const Content = styled.main`
   flex-direction: column;
   gap: 20px;
   overflow-y: scroll;
+
+  .close {
+    display: flex;
+    flex: 1 1 100%;
+    width: 87%;
+    height: 0px;
+    justify-content: flex-end;
+  }
 `;
 
 export const Info = styled.header`

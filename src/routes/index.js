@@ -8,7 +8,7 @@ import Home from '../pages/Home';
 export default function Routes() {
   return (
     <Switch>
-      <MyRoute exact path="/" component={Home} />
+      <MyRoute exact path="/" component={Home} isClosed />
       <MyRoute exact path="/login" component={Login} />
     </Switch>
   );

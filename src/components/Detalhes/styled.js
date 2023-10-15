@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { darkColor } from '../../config/colors';
+import { darkColor, darkerColor } from '../../config/colors';
 
 export const Details = styled.div`
   display: flex;
@@ -7,6 +7,27 @@ export const Details = styled.div`
   flex: 1 1 90%;
   width: 90%;
   gap: 10px;
+
+  .loader-father {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loader {
+  border: 16px solid ${darkColor}; /* Light grey */
+  border-top: 16px solid ${darkerColor}; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 
   header {
     display: flex;
@@ -18,9 +39,18 @@ export const Details = styled.div`
     width: 100%;
 
     p {
+      display: flex;
+      flex: 1 1 75%;
+      max-width: 90%;
+      justify-content: center;
+      padding-left: 30px;
       font-size: 20px;
       font-family: 'Inter';
       font-style: italic;
+    }
+
+    .save {
+      padding-right: 5px;
     }
   }
 

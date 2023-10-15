@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { darkColor, darkerColor } from '../../config/colors';
+import { darkColor } from '../../config/colors';
 
-export const Ataq = styled.div`
+export const Inv = styled.div`
   display: flex;
-  flex-wrap: wrap;
   flex: 1 1 90%;
   width: 90%;
+  flex-wrap: wrap;
   gap: 10px;
 
   header {
@@ -44,24 +44,52 @@ export const Ataq = styled.div`
     display: flex;
     flex: 1 1 100%;
     gap: 2%;
-    font-size: 14px;
+    flex-wrap: wrap;
+
+    span {
+      margin-top: 10px;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      border: 1px solid #fff;
+    }
   }
 
   ::placeholder {
     color: #fff;
   }
 
-  .nome-atq {
+  .nome-item {
     display: flex;
+    flex: 1 1 83%;
+    max-width: 83%;
     flex-direction: column;
-    width: 32%;
 
-    #nome-atq {
+    #nome-item {
       width: 100%;
       border: none;
       border: 1px solid #fff;
-      color: #fff;
       background: #000;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 14px;
+      height: 35px;
+      padding-left: 3px;
+    }
+  }
+
+  .esp-item {
+    display: flex;
+    flex: 1 1 10%;
+    max-width: 14%;
+    flex-direction: column;
+
+    #esp-item {
+      width: 100%;
+      border: none;
+      border: 1px solid #fff;
+      background: #000;
+      color: #fff;
       border-radius: 5px;
       height: 35px;
       font-size: 14px;
@@ -69,57 +97,23 @@ export const Ataq = styled.div`
     }
   }
 
-  .test-atq {
+  .desc-hab {
     display: flex;
+    flex: 1 1 100%;
     flex-direction: column;
-    width: 15%;
+    padding-top: 10px;
 
-    #test-atq {
+    #desc-hab {
       width: 100%;
       border: none;
       border: 1px solid #fff;
-      color: #fff;
       background: #000;
-      border-radius: 5px;
-      height: 35px;
-      font-size: 12px;
-      padding-left: 3px;
-    }
-  }
-
-  .dmg-atq {
-    display: flex;
-    flex-direction: column;
-    width: 15%;
-
-    #dmg-atq {
-      width: 100%;
-      border: none;
-      border: 1px solid #fff;
       color: #fff;
-      background: #000;
       border-radius: 5px;
-      height: 35px;
-      font-size: 12px;
-      padding-left: 3px;
-    }
-  }
-
-  .outros-atq {
-    display: flex;
-    flex-direction: column;
-    width: 32%;
-
-    #outros-atq {
-      width: 100%;
-      border: none;
-      border: 1px solid #fff;
-      color: #fff;
-      background: #000;
-      border-radius: 5px;
-      height: 35px;
+      height: 50px;
       font-size: 14px;
-      padding-left: 3px;
+      padding: 0px 3px 3px 3px;
+      font-family: 'Inter';
     }
   }
 

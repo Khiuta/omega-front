@@ -27,5 +27,13 @@ module.exports = {
     camelcase: 'off',
     'no-console': 'off',
     'no-alert': 'off',
+    'default-param-last': 'off',
+    'func-names': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'no-unused-vars': 'off',
+    'react/jsx-no-useless-fragment': 'off',
+    'no-param-reassign': 'off',
+    'consistent-return': 'off',
   },
 };
